@@ -1,0 +1,107 @@
+<div class="detail-container" *ngIf="candidate$ | async as candidate">
+  <div class="detail-header">
+    <button mat-icon-button (click)="onBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Candidate Details</h2>
+  </div>
+
+  <mat-card class="candidate-detail-card">
+    <mat-card-content>
+      <div class="candidate-info">
+
+        <!-- Basic Information Section -->
+        <div class="info-section">
+          <h3 class="section-title">
+            <mat-icon>badge</mat-icon>
+            Basic Information
+          </h3>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Full Name:</label>
+              <span class="candidate-name">{{ candidate.name }} {{ candidate.surname }}</span>
+            </div>
+
+            <div class="info-item">
+              <label>First Name:</label>
+              <span>{{ candidate.name }}</span>
+            </div>
+
+            <div class="info-item">
+              <label>Last Name:</label>
+              <span>{{ candidate.surname }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Information Section -->
+        <div class="info-section">
+          <h3 class="section-title">
+            <mat-icon>work</mat-icon>
+            Technical Information
+          </h3>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Seniority Level:</label>
+              <mat-chip [color]="candidate.seniority === 'senior' ? 'primary' : 'accent'">
+                <mat-icon>{{ candidate.seniority === 'senior' ? 'star' : 'star_border' }}</mat-icon>
+                {{ candidate.seniority | titlecase }}
+              </mat-chip>
+            </div>
+
+            <div class="info-item">
+              <label>Years of Experience:</label>
+              <span class="years-badge">
+                <mat-icon>schedule</mat-icon>
+                {{ candidate.years }} {{ candidate.years === 1 ? 'year' : 'years' }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <label>Availability:</label>
+              <mat-chip [color]="candidate.availability ? 'primary' : 'warn'">
+                <mat-icon>{{ candidate.availability ? 'check_circle' : 'cancel' }}</mat-icon>
+                {{ getAvailabilityText(candidate.availability) }}
+              </mat-chip>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metadata Section -->
+        <div class="info-section">
+          <h3 class="section-title">
+            <mat-icon>info</mat-icon>
+            Record Information
+          </h3>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Created:</label>
+              <span>{{ formatDate(candidate.createdAt) }}</span>
+            </div>
+
+            <div class="info-item">
+              <label>Last Updated:</label>
+              <span>{{ formatDate(candidate.updatedAt) }}</span>
+            </div>
+
+            <div class="info-item">
+              <label>Candidate ID:</label>
+              <span class="candidate-id">{{ candidate.id }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="onBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Candidates
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

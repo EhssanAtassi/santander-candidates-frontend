@@ -1,0 +1,60 @@
+.main-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  mat-icon {
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    mat-icon {
+      font-size: 1.2rem;
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1rem;
+  }
+
+  .nav-links a {
+    min-width: auto;
+    padding: 0 0.5rem;
+
+    span:not(.mat-icon) {
+      display: none;
+    }
+  }
+}
