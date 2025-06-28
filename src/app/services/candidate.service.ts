@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Candidate} from '../interfaces/candidate.interface';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -97,7 +97,7 @@ export class CandidateService {
   updateCandidate(id: string, candidateData: Partial<Candidate>): Observable<Candidate> {
     return this.http.patch<Candidate>(`${this.apiUrl}/${id}`, candidateData).pipe(
       tap(updatedCandidate => {
-        
+
         const currentCandidates = this.candidatesSubject.value;
         const updatedCandidates = currentCandidates.map(candidate =>
           candidate.id === id ? updatedCandidate : candidate
